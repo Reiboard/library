@@ -1,0 +1,26 @@
+import maya.cmds as cmds
+
+ikFkAttr = cmds.getAttr("FK_hand_ctl.IK_FK")
+
+if ikFkAttr == 0:
+    cmds.xform("FK_hand_ctl", ro=(cmds.xform("IK_hand_jnt", ro=True,ws=True,q=True)), ws=True)
+    cmds.setAttr("FK_hand_ctl.IK_FK",1)
+    
+elif ikFkAttr == 1:
+    cmds.xform("IK_handle_end_ctl",t=cmds.xform("FK_end_ctl",q=True,ws=True,rp=True),ws=True)
+    cmds.setAttr("FK_hand_ctl.IK_FK",0)
+
+
+
+V2
+import maya.cmds as cmds
+
+ikFkAttr = cmds.getAttr("ecl_rig_walking_stick:FK_hand_ctl.IK_FK")
+
+if ikFkAttr == 0:
+    cmds.xform("ecl_rig_walking_stick:FK_hand_ctl", ro=(cmds.xform("ecl_rig_walking_stick:IK_hand_jnt", ro=True,ws=True,q=True)), ws=True)
+    cmds.setAttr("ecl_rig_walking_stick:FK_hand_ctl.IK_FK",1)
+    
+elif ikFkAttr == 1:
+    cmds.xform("ecl_rig_walking_stick:IK_handle_end_ctl",t=cmds.xform("ecl_rig_walking_stick:FK_end_ctl",q=True,ws=True,rp=True),ws=True)
+    cmds.setAttr("ecl_rig_walking_stick:FK_hand_ctl.IK_FK",0)
